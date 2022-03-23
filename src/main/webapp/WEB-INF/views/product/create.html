@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Create</title>
+</head>
+<body>
+<h1>Product Create</h1>
+<p><a href="/products">Back to Product List</a></p>
+<form action="/products/create" method="post" th:object="${productForm}" enctype="multipart/form-data">
+    <input type="text" placeholder="input name" th:field="*{name}">
+    <input type="text" th:field="*{price}">
+    <input type="text" placeholder="input description" th:field="*{description}">
+    <input type="file" th:field="*{image}">
+    <button>Create</button>
+</form>
+</body>
+</html>
