@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Product Create</title>
+    <title>Product Delete</title>
 </head>
 <body>
-<h1>Product Create</h1>
+<h1>Product Delete</h1>
 <p><a href="/products">Back to Product List</a></p>
-<form action="/products/create" method="post" th:object="${productForm}" enctype="multipart/form-data">
-    <input type="text" placeholder="input name" th:field="*{name}">
-    <input type="text" th:field="*{price}">
-    <input type="text" placeholder="input description" th:field="*{description}">
-    <input type="file" th:field="*{image}">
-    <button>Create</button>
+<form th:action="@{/products/delete/__${product.id}__}" method="post">
+    <p th:text="${product.name}"></p>
+    <p th:text="${product.price}"></p>
+    <p th:text="${product.description}"></p>
+    <p><img th:src="@{/image/__${product.image}__}" alt="image"></p>
+    <button>Delete</button>
 </form>
 </body>
 </html>

@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.File;
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
@@ -24,9 +26,14 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
-    @GetMapping("")
-    public ModelAndView showAllProduct() {
-        List<Product> products = productService.findAll();
+    @GetMapping
+    public ModelAndView showListProduct(@RequestParam(name = "q") Optional<String> q) {
+        List<Product> products = new ArrayList<>();
+        if(!q.isPresent()){
+        products = productService.findAll();
+        } else {
+            products = productService.searchProductByPartOfName(q.get());
+        }
         ModelAndView modelAndView = new ModelAndView("/product/list", "products", products);
         return modelAndView;
     }
@@ -86,6 +93,19 @@ public class ProductController {
         }
         Product newProduct = new Product(id,productForm.getName(), productForm.getPrice(), productForm.getDescription(), fileName);
         productService.save(newProduct);
+        ModelAndView modelAndView = new ModelAndView("redirect:/products");
+        return modelAndView;
+    }
+    @GetMapping("/delete/{id}")
+    public ModelAndView showDeleteForm(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("/product/delete");
+        Product product = productService.findById(id);
+        modelAndView.addObject("product",product);
+        return modelAndView;
+    }
+    @PostMapping("/delete/{id}")
+    public ModelAndView deleteProduct(@PathVariable Long id){
+        productService.removeById(id);
         ModelAndView modelAndView = new ModelAndView("redirect:/products");
         return modelAndView;
     }

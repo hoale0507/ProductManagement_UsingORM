@@ -12,4 +12,5 @@ public interface IProductService {
     Product save(Product product);
 
     void removeById(Long id);
+    List<Product> searchProductByPartOfName(String q);
 }

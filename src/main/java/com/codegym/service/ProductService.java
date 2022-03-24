@@ -29,4 +29,10 @@ public class ProductService implements IProductService{
     public void removeById(Long id) {
         productDao.removeById(id);
     }
+
+    @Override
+    public List<Product> searchProductByPartOfName(String q) {
+        q = "%" + q + "%";
+        return productDao.searchProductByPartOfName(q);
+    }
 }
