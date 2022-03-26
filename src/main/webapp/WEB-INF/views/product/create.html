@@ -12,6 +12,9 @@
     <input type="text" th:field="*{price}">
     <input type="text" placeholder="input description" th:field="*{description}">
     <input type="file" th:field="*{image}">
+    <select th:field="*{category}">
+        <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+    </select>
     <button>Create</button>
 </form>
 </body>

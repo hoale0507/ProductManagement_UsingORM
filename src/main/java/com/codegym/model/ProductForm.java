@@ -8,6 +8,7 @@ public class ProductForm {
     private double price;
     private String description;
     private MultipartFile image;
+    private Category category;
 
     public ProductForm() {
     }
@@ -18,6 +19,15 @@ public class ProductForm {
         this.price = price;
         this.description = description;
         this.image = image;
+    }
+
+    public ProductForm(Long id, String name, double price, String description, MultipartFile image, Category category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.category = category;
     }
 
     public Long getId() {
@@ -58,5 +68,13 @@ public class ProductForm {
 
     public void setImage(MultipartFile image) {
         this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

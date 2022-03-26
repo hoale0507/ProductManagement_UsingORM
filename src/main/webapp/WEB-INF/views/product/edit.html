@@ -13,6 +13,10 @@
     <input type="text"  th:field="*{description}">
     <p><img th:src="@{/image/__${product.image}__}" alt="image"></p>
     <input type="file" th:field="*{image}">
+    <select th:field="*{category}">
+        <option th:each="category: ${categories}" th:if="${product.category.id == category.id}" th:value="${category.id}" th:text="${category.name}" selected></option>
+        <option th:each="category: ${categories}" th:if="${product.category.id != category.id}" th:value="${category.id}" th:text="${category.name}"></option>
+    </select>
     <button>Edit</button>
 </form>
 </body>
