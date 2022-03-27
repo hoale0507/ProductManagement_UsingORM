@@ -7,10 +7,7 @@ import com.codegym.service.category.ICategoryService;
 import com.codegym.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -54,6 +51,36 @@ public class CategoryController {
         categoryService.removeById(id);
         ModelAndView modelAndView = new ModelAndView("redirect:/categories");
 //        modelAndView.addObject("message","Category deleted successfully");
+        return modelAndView;
+    }
+    @GetMapping("/create")
+    public ModelAndView modelAndView(){
+        ModelAndView modelAndView = new ModelAndView("/category/create");
+        Category category = new Category();
+        modelAndView.addObject("category",category);
+        return modelAndView;
+    }
+    @PostMapping("/create")
+    public ModelAndView modelAndView(@ModelAttribute Category category){
+        categoryService.save(category);
+        ModelAndView modelAndView = new ModelAndView("/category/create");
+        modelAndView.addObject("message","Create successfully");
+        return modelAndView;
+    }
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditForm(@PathVariable Long id){
+        Optional<Category> category = categoryService.findById(id);
+        if(!category.isPresent()){
+            return new ModelAndView("error-404");
+        }
+        ModelAndView modelAndView = new ModelAndView("/category/edit","category",category.get());
+        return modelAndView;
+    }
+    @PostMapping("/edit/{id}")
+    public ModelAndView editCategory(@ModelAttribute Category category){
+        categoryService.save(category);
+        ModelAndView modelAndView = new ModelAndView("/category/edit");
+        modelAndView.addObject("message","Edit successfully!");
         return modelAndView;
     }
 }
