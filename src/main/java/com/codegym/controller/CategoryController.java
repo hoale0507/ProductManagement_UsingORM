@@ -48,9 +48,9 @@ public class CategoryController {
     }
     @PostMapping("/delete/{id}")
     public ModelAndView deleteCategory(@PathVariable Long id){
-        categoryService.removeById(id);
+//        categoryService.removeById(id);
+        categoryService.deleteByProcedure(id);
         ModelAndView modelAndView = new ModelAndView("redirect:/categories");
-//        modelAndView.addObject("message","Category deleted successfully");
         return modelAndView;
     }
     @GetMapping("/create")
