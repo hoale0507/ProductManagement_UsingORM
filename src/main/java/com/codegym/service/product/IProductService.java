@@ -14,5 +14,5 @@ public interface IProductService extends IGenneralService<Product> {
     Iterable<Product> searchProductByPriceAndName(Double min, Double max);
     Iterable<Product> findAllByCategory(Category category);
     Page<Product> findAll(Pageable pageable);
-
+    Iterable<Product> findByNameContaining(String name);
 }

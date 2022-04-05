@@ -16,4 +16,5 @@ public interface IProductRepository extends PagingAndSortingRepository<Product,L
     @Query(value = "select * from products where price between ?1 and ?2",nativeQuery = true)
     Iterable<Product> searchProductByPriceAndName(Double min, Double max);
     Iterable<Product> findAllByCategory(Category category);
+    Iterable<Product> findByNameContaining(String name);
 }
