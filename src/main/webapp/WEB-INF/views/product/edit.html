@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Product Edit</h1>
-<p><a href="/products">Back to Product List</a></p>
-<form th:action="@{/products/edit/__${product.id}__}" method="post" th:object="${product}" enctype="multipart/form-data">
+<p><a href="/product">Back to Product List</a></p>
+<form th:action="@{/product/edit/__${product.id}__}" method="post" th:object="${product}" enctype="multipart/form-data">
     <input type="text" th:field="*{name}">
     <input type="text" th:field="*{price}">
     <input type="text"  th:field="*{description}">

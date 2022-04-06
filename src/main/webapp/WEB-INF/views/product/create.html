@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Product Create</h1>
-<p><a href="/products">Back to Product List</a></p>
-<form action="/products/create" method="post" th:object="${productForm}" enctype="multipart/form-data">
+<p><a href="/product">Back to Product List</a></p>
+<form action="/product/create" method="post" th:object="${productForm}" enctype="multipart/form-data">
     <input type="text" placeholder="input name" th:field="*{name}">
     <input type="text" th:field="*{price}">
     <input type="text" placeholder="input description" th:field="*{description}">

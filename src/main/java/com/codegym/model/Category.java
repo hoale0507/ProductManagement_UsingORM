@@ -12,16 +12,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(targetEntity = Product.class, cascade = CascadeType.PERSIST)
-    private List<Product> customers;
-
-    public List<Product> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(List<Product> customers) {
-        this.customers = customers;
-    }
 
     public Category() {
     }
